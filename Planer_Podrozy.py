@@ -25,6 +25,22 @@ class Transport(Travel):
         self.travel_A_B = travel_A_B_
         self.travel_B_A = travel_B_A_
 
+class Manager:
+    def __init__(self):
+        self.travels = []
+        self.countries = []
+        self.cities = []
+
+    def show(self):
+        print("1. Add new travel")
+        print("2. Show travels")
+        print("3. Show all cities which you visited")
+        print("4. Show all countries which you visited")
+
+
+
+
+
 
 
 
