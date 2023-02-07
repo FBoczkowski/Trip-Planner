@@ -30,12 +30,30 @@ class Manager:
         self.travels = []
         self.countries = []
         self.cities = []
+        self.start = True
 
-    def show(self):
-        print("1. Add new travel")
-        print("2. Show travels")
-        print("3. Show all cities which you visited")
-        print("4. Show all countries which you visited")
+    def show_menu(self):
+        while(self.start):
+            print("1. Add new travel")
+            print("2. Show travels")
+            print("3. Show all cities which you visited")
+            print("4. Show all countries which you visited")
+            print("5. Exit")
+
+            choice = input()
+            self.execute_menu(choice)
+
+    def execute_menu(self, choice):
+        if choice == "1":
+
+        elif choice == "2":
+            print(f"{self.travels}")
+        elif choice == "3":
+            print(f"{self.cities}")
+        elif choice == "4":
+            print(f"{self.countries}")
+        elif choice == "5":
+            self.start = False
 
 
 
