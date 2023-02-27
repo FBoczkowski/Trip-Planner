@@ -1,8 +1,16 @@
+class City:
+    def __init__(self, city_, population_=0):
+        self.city = city_
+        self.population = population_
+
+class Country:
+    def __init__(self, country_, capitol_=0):
+        self.country = country_
+        self.capitol = capitol_
+
 class Travel:
-    def __init__(self, place_, apartment_night_, trip_name_, spend_money_, start_travel_, finish_travel_, city_,
-                 country_, transport_):
-        self.place = place_
-        self.aprtment_night = apartment_night_
+    def __init__(self, trip_name_, spend_money_, start_travel_, finish_travel_, city_: City,
+                 country_: Country, transport_):
         self.trip_name = trip_name_
         self.spend_money = spend_money_
         self.start_travel = start_travel_
@@ -10,16 +18,6 @@ class Travel:
         self.city = city_
         self.country = country_
         self.transport = transport_
-
-class City:
-    def __init__(self, city_, population_):
-        self.city = city_
-        self.population = population_
-
-class Country:
-    def __init__(self, country_, capitol_):
-        self.country = country_
-        self.capitol = capitol_
 
 class Transport:
     def __init__(self, travel_cost_, travel_time_, travel_A_B_, travel_B_A_):
@@ -65,20 +63,21 @@ class Manager:
         elif choice == "7":
             self.start = False
 
-        def add_new_travel(self):
+    def add_new_travel(self):
         trip_name = input("Enter Trip name: ")
-        country = input("Enter country which you visited/planning visit: ")
-        city = input("Enter city which you visited/planning visit: ")
+        country_name = input("Enter country which you visited/planning visit: ")
+        city_name = input("Enter city which you visited/planning visit: ")
         start_travel = input("Enter when you started/planning start travel (DD.MM.YYYY): ")
         finish_travel = input("Enter when you finish/planning start travel (DD.MM.YYYY): ")
         transport = input("Enter which type of transport you have used: ")
         spend_money = input("Enter how much money you have spent: ")
-
+        city = City(city_name)
+        country = Country(country_name)
         new_travel = Travel(trip_name_=trip_name, country_=country, city_=city, start_travel_=start_travel,
                                 finish_travel_=finish_travel, transport_=transport, spend_money_=spend_money)
         self.travels.append(new_travel)
-        self.cities.append(Travel(city_=city))
-        self.countries.append(Travel(country_=country))
+        self.cities.append(city)
+        self.countries.append(country)
 
     def transport_details(self):
         travel_A_B = input("Which type of transport do you travel from A to B? You can choose from this list:\n"
@@ -115,6 +114,9 @@ class Manager:
 
 def main():
 
+    menu = Manager()
+
+    menu.show_menu()
 
 if __name__ == "__main__":
     main()
