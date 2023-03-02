@@ -1,27 +1,27 @@
+import wikipedia
+
 class City:
-    def __init__(self, city_, population_=0):
+    def __init__(self, city_, city_information_=0):
         self.city = city_
-        self.population = population_
+        self.city_information = city_information_
 
 class Country:
-    def __init__(self, country_, capitol_=0):
+    def __init__(self, country_, country_information_=0):
         self.country = country_
-        self.capitol = capitol_
+        self.country_information = country_information_
 
 class Travel:
     def __init__(self, trip_name_, spend_money_, start_travel_, finish_travel_, city_: City,
-                 country_: Country, transport_):
+                 country_: Country):
         self.trip_name = trip_name_
         self.spend_money = spend_money_
         self.start_travel = start_travel_
         self.finish_travel = finish_travel_
         self.city = city_
         self.country = country_
-        self.transport = transport_
 
 class Transport:
-    def __init__(self, travel_cost_, travel_time_, travel_A_B_, travel_B_A_):
-        self.travel_cost = travel_cost_
+    def __init__(self, travel_time_, travel_A_B_, travel_B_A_):
         self.travel_time = travel_time_
         self.travel_A_B = travel_A_B_
         self.travel_B_A = travel_B_A_
@@ -43,6 +43,7 @@ class Manager:
             print("5. Show all cities which you visited")
             print("6. Show all countries which you visited")
             print("7. Exit")
+            print("\n")
 
             choice = input()
             self.execute_menu(choice)
@@ -69,12 +70,15 @@ class Manager:
         city_name = input("Enter city which you visited/planning visit: ")
         start_travel = input("Enter when you started/planning start travel (DD.MM.YYYY): ")
         finish_travel = input("Enter when you finish/planning start travel (DD.MM.YYYY): ")
-        transport = input("Enter which type of transport you have used: ")
-        spend_money = input("Enter how much money you have spent: ")
+        spend_money = int(input("Enter how much money you have spent: "))
+        #city_info = wikipedia.summary(f"{city_name}", sentences = 1)
+        #country_info = wikipedia.summary(f"{country_name}", sentences = 1)
         city = City(city_name)
         country = Country(country_name)
+
         new_travel = Travel(trip_name_=trip_name, country_=country, city_=city, start_travel_=start_travel,
-                                finish_travel_=finish_travel, transport_=transport, spend_money_=spend_money)
+                                finish_travel_=finish_travel, spend_money_=spend_money)
+
         self.travels.append(new_travel)
         self.cities.append(city)
         self.countries.append(country)
@@ -91,25 +95,40 @@ class Manager:
                            "- Bus\n"
                            "- Train")
         travel_time = input("How much time do you spend in both way?: ")
-        travel_cost = input("How much money do you spend money for transport?: ")
 
-        new_transport_details = Transport(travel_A_B_=travel_A_B, travel_B_A_=travel_B_A, travel_time_=travel_time,
-                                          travel_cost_=travel_cost)
+        new_transport_details = Transport(travel_A_B_=travel_A_B, travel_B_A_=travel_B_A, travel_time_=travel_time)
         self.transports.append(new_transport_details)
 
     def show_transpoer_details(self):
-        print(f"{self.transports}")
+        for count, nations in enumerate(self.transports):
+            print(f"{count}:\n"
+                  f"Type of transport, you travel from A to B - {nations.travel_A_B}\n"
+                  f"Type of transport, you travel from B to A - {nations.travel_B_A}\n"
+                  f"All time which you spend in both way - {nations.travel_time}h\n")
     def show_travels(self):
-        print(f"{self.travels}")
-
+        for count, trips in enumerate(self.travels):
+            print(f"{count}:\n"
+                  f"Trip name - {trips.trip_name}\n"
+                  f"Country which you visited/planning visit - {trips.country_name}\n"
+                  f"City which you visited/planning visit - {trips.city_name}\n"
+                  f"Date when you will start or started travel - {trips.start_travel}\n"
+                  f"Date when you will finish or finished travel - {trips.finish_travel}\n"
+                  f"How much money you spent or will you spend - {trips.spend_money}zł\n")
+        print("\n")
     def show_cities(self):
-        print(f"{self.cities}")
-
+        for count, cities in enumerate(self.cities):
+            print(f"{count} - {cities.city}")
+        print("\n")
     def show_countries(self):
-        print(f"{self.countries}")
+        for count, nations in enumerate(self.countries):
+            print(f"{count} - {nations.country}")
+        print("\n")
 
     def stop_menu(self):
         self.start = False
+
+
+
 
 
 def main():
