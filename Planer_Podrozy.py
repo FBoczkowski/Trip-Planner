@@ -1,4 +1,5 @@
 import wikipedia
+import datetime
 
 class City:
     def __init__(self, city_, city_information_=0):
@@ -12,13 +13,15 @@ class Country:
 
 class Travel:
     def __init__(self, trip_name_, spend_money_, start_travel_, finish_travel_, city_: City,
-                 country_: Country):
+                 country_: Country, city_info_: City, country_info_: City):
         self.trip_name = trip_name_
         self.spend_money = spend_money_
         self.start_travel = start_travel_
         self.finish_travel = finish_travel_
         self.city = city_
         self.country = country_
+        self.city_info = city_info_
+        self.country_info = country_info_
 
 class Transport:
     def __init__(self, travel_time_, travel_A_B_, travel_B_A_):
@@ -64,20 +67,32 @@ class Manager:
         elif choice == "7":
             self.start = False
 
+    def change_date(self, date_str):
+        year, month, day = map(int, date_str.split("-"))
+        return datetime.date(year, month, day)
     def add_new_travel(self):
         trip_name = input("Enter Trip name: ")
         country_name = input("Enter country which you visited/planning visit: ")
         city_name = input("Enter city which you visited/planning visit: ")
-        start_travel = input("Enter when you started/planning start travel (DD.MM.YYYY): ")
-        finish_travel = input("Enter when you finish/planning start travel (DD.MM.YYYY): ")
+        date_start = input("Enter when you started/planning start travel (DD.MM.YYYY): ")
+        date_stop = input("Enter when you finish/planning start travel (DD.MM.YYYY): ")
         spend_money = int(input("Enter how much money you have spent: "))
-        #city_info = wikipedia.summary(f"{city_name}", sentences = 1)
-        #country_info = wikipedia.summary(f"{country_name}", sentences = 1)
+
+        info_city = wikipedia.summary(f"{city_name}")
+        info_country = wikipedia.summary(f"{country_name}")
+
         city = City(city_name)
         country = Country(country_name)
+        city_info = City(0, info_city)
+        country_info = Country(0, info_country)
+
+        start_travel = self.change_date(date_start)
+        finish_travel = self.change_date(date_stop)
 
         new_travel = Travel(trip_name_=trip_name, country_=country, city_=city, start_travel_=start_travel,
-                                finish_travel_=finish_travel, spend_money_=spend_money)
+                            finish_travel_=finish_travel, spend_money_=spend_money, city_info_=city_info,
+                            country_info_=country_info)
+
 
         self.travels.append(new_travel)
         self.cities.append(city)
@@ -109,12 +124,12 @@ class Manager:
         for count, trips in enumerate(self.travels):
             print(f"{count}:\n"
                   f"Trip name - {trips.trip_name}\n"
-                  f"Country which you visited/planning visit - {trips.country_name}\n"
-                  f"City which you visited/planning visit - {trips.city_name}\n"
+                  f"Country which you visited/planning visit - {trips.country}\n"
+                  f"City which you visited/planning visit - {trips.city}\n"
                   f"Date when you will start or started travel - {trips.start_travel}\n"
                   f"Date when you will finish or finished travel - {trips.finish_travel}\n"
                   f"How much money you spent or will you spend - {trips.spend_money}zł\n")
-        print("\n")
+            print("\n")
     def show_cities(self):
         for count, cities in enumerate(self.cities):
             print(f"{count} - {cities.city}")
