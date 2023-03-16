@@ -70,4 +70,6 @@ The `Manager` class manages all the functions of the program. It has the followi
 - `show_cities()`: displays the details of all cities visited.
 - `show_countries()`: displays the details of all countries visited.
 
+**Contributing**
 
+Contributions are welcome! If you find any bugs or have any suggestions for improvement, please submit an issue or pull request.
