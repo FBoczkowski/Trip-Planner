@@ -19,7 +19,7 @@ You can install the packages by running `pip install -r requirements.txt` in you
 
 **How to use**
 
-1. Run `trip_planner.py` in your terminal.
+1. Run `Trip_Planner.py` in your terminal.
 2. The program will display a menu with options to add new travel, add new details of travel transport, show travels, show transport details, show all cities visited, show all countries visited, or exit the program.
 3. Choose the option you want and follow the prompts.
 4. After each operation, the program will return to the main menu.
