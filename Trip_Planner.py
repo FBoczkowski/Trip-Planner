@@ -7,11 +7,13 @@ class City:
     def __init__(self, name_, information_=0):
         self.name = name_
         self.information =  information_
+        self.information = wikipedia.summary(f"{self.name}")
 
 class Country:
     def __init__(self, name_, information_=0):
         self.name = name_
         self.information = information_
+        self.information = wikipedia.summary(f"{self.name}")
 
 class Travel:
     def __init__(self, trip_name_, spend_money_, start_travel_, finish_travel_, city_: City,
@@ -70,15 +72,14 @@ class Manager:
     def change_date(self, date_str):
         year, month, day = map(int, date_str.split("-"))
         return datetime.date(year, month, day)
-    def wiki_info(self, place):
-        x = wikipedia.summary(f"{place}")
-        return x[:200]
+
+
     def add_new_travel(self):
         trip_name = input("Enter Trip name: ")
         country_name = input("Enter country which you visited/planning visit: ")
         city_name = input("Enter city which you visited/planning visit: ")
-        date_start = input("Enter when you started/planning start travel (YYYY.MM.DD): ")
-        date_stop = input("Enter when you finish/planning start travel (YYYY.MM.DD): ")
+        date_start = input("Enter when you started/planning start travel (YYYY-MM-DD): ")
+        date_stop = input("Enter when you finish/planning start travel (YYYY-MM-DD): ")
         spend_money = int(input("Enter how much money you have spent: "))
 
         city = City(city_name)
@@ -132,13 +133,13 @@ class Manager:
         for count, city in enumerate(self.cities):
             print(f"{count}:\n"
                   f"City name: {city.name}\n"
-                  f"City information: {self.wiki_info(city.name)}...")
+                  f"City information: {city.information[:200]}...")
         print("\n")
     def show_countries(self):
         for count, country in enumerate(self.countries):
             print(f"{count}:"
                   f"Country name: {country.name}\n"
-                  f"Country information: {self.wiki_info(country.name)}...")
+                  f"Country information: {country.information[:200]}...")
         print("\n")
 
     def stop_menu(self):
