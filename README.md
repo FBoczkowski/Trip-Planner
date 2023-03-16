@@ -1,35 +1,73 @@
 # Trip-Planner
-This is a Python program that allows users to manage their travels. Users can create new travels, add travel transport details, and view all their past travels. The program uses the typing module and Wikipedia API.
-Installation
-Clone the repository: git clone https://github.com/<USERNAME>/travel-manager.git
-Install the required packages: pip install -r requirements.txt
-Usage
-Run python main.py to start the program.
-Use the menu options to add a new travel, add travel transport details, show travels, show transport details, show all cities visited, and show all countries visited.
-To exit the program, select 7 from the menu.
-Classes
-City
-Represents a city with a name and information about the city.
-Constructor takes two parameters: name_ and information_=0.
-Country
-Represents a country with a name and information about the country.
-Constructor takes two parameters: name_ and information_=0.
-Travel
-Represents a travel with a name, spend money, start and finish travel date, city and country details.
-Constructor takes six parameters: trip_name_, spend_money_, start_travel_, finish_travel_, city_: City, and country_: Country.
-Transport
-Represents a transport with travel time and travel details for going from point A to point B and from point B to point A.
-Constructor takes three parameters: travel_time_, travel_A_B_, and travel_B_A_.
-Manager
-Represents the main manager for travels and the UI for the program.
-The constructor initializes lists for travels, cities, countries, and transports.
-The show_menu function displays the menu options and prompts the user to make a selection.
-The execute_menu function calls the appropriate function based on the user's selection.
-The add_new_travel function prompts the user for travel details and creates a new Travel object with those details.
-The transport_details function prompts the user for transport details and creates a new Transport object with those details.
-The show_transpoer_details function displays all the transport details.
-The show_travels function displays all the travels.
-The show_cities function displays all the cities visited and provides a short summary of each city using the Wikipedia API.
-The show_countries function displays all the countries visited.
-Contributing
-Contributions are welcome! If you find any bugs or have any suggestions for improvement, please submit an issue or pull request.
+
+This is a Python program that helps you manage your travels. It has the following features:
+
+- Add new travels to a list.
+- Add details about travel transport.
+- Show a list of all your travels.
+- Show the details of all travel transport.
+- Show all the cities you have visited.
+- Show all the countries you have visited.
+- Exit the program.
+
+**Prerequisites**
+
+- Python 3.x installed on your machine.
+- The following packages need to be installed `wikipedia`
+
+You can install the packages by running `pip install -r requirements.txt` in your terminal.
+
+**How to use**
+
+1. Run `trip_planner.py` in your terminal.
+2. The program will display a menu with options to add new travel, add new details of travel transport, show travels, show transport details, show all cities visited, show all countries visited, or exit the program.
+3. Choose the option you want and follow the prompts.
+4. After each operation, the program will return to the main menu.
+5. To exit the program, choose option 7 in the menu.
+
+**Classes**
+
+**City**
+The `City` class represents a city that you have visited/planning to visit. It has the following attributes:
+
+- `name`: a string representing the name of the city.
+- `information`: an integer representing the amount of information available about the city.
+
+**Country**
+The `Country` class represents a country that you have visited/planning to visit. It has the following attributes:
+
+- `name`: a string representing the name of the country.
+- `information`: an integer representing the amount of information available about the country.
+
+**Travel**
+The `Travel` class represents a travel that you have taken/planning to take. It has the following attributes:
+
+- `trip_name`: a string representing the name of the travel.
+- `spend_money`: an integer representing the amount of money spent on the travel.
+- `start_travel`: a datetime object representing the start date of the travel.
+- `finish_travel`: a datetime object representing the finish date of the travel.
+- `city`: a City object representing the city visited/planning to visit.
+- `country`: a Country object representing the country visited/planning to visit.
+
+**Transport**
+The `Transport` class represents the details of the transport used during a travel. It has the following attributes:
+
+- `travel_time`: a string representing the amount of time spent traveling.
+- `travel_A_B`: a string representing the type of transport used to travel from A to B.
+- `travel_B_A`: a string representing the type of transport used to travel from B to A.
+
+**Manager**
+The `Manager` class manages all the functions of the program. It has the following methods:
+
+- `show_menu()`: displays the main menu.
+- `execute_menu(choice)`: executes the user's choice from the main menu.
+- `change_date(date_str)`: converts a date string in the format "YYYY.MM.DD" to a datetime object.
+- `wiki_info(place)`: gets a short summary of the given place from Wikipedia.
+- `add_new_travel()`: adds a new travel to the list of travels.
+- `transport_details()`: adds the details of transport used during a travel.
+- `show_transpoer_details()`: displays the details of all transport used during all travels.
+- `show_travels()`: displays the details of all travels.
+- `show_cities()`: displays the details of all cities visited.
+- `show_countries()`: displays the details of all countries visited.
+
+
